@@ -1,8 +1,16 @@
-import express from 'express'
+import express from 'express';
+import path from 'path';
+
 const app = express();
+const __dirname = path.resolve();
+console.log(__dirname,"======");
+
+app.use(express.static(path.join(__dirname,"public")));
+
+
 app.get('/', (req, res) => {
-    console.log(req);
-  res.send('Hello World')
+    console.log("request recived");
+  res.sendFile(__dirname+"/index.html");
 })
 
 app.listen(8000, (error) => {
